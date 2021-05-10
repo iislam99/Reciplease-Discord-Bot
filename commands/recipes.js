@@ -42,10 +42,18 @@ module.exports = {
         const isBackwards = (reaction, user) => reaction.emoji.name === '⏪' && user.id === message.author.id;
         const isForwards = (reaction, user) => reaction.emoji.name === '⏩' && user.id === message.author.id;
 
-        const backwards = recipeListMessage.createReactionCollector(isBackwards, { time: 300000 });
-        const forwards = recipeListMessage.createReactionCollector(isForwards, { time: 300000 });
+        const backwards = recipeListMessage.createReactionCollector(isBackwards, { time: 300000, dispose: true });
+        const forwards = recipeListMessage.createReactionCollector(isForwards, { time: 300000, dispose: true });
 
-        backwards.on("collect", r => {
+        backwards.on("collect", (reaction) => {
+            if (page_index === 1) {
+                page_index = pages.length;
+            } else {
+                page_index--;
+            }
+            recipeListMessage.edit(pages[page_index - 1]);
+        });
+        backwards.on("remove", (reaction) => {
             if (page_index === 1) {
                 page_index = pages.length;
             } else {
@@ -54,7 +62,15 @@ module.exports = {
             recipeListMessage.edit(pages[page_index - 1]);
         });
 
-        forwards.on("collect", r => {
+        forwards.on("collect", (reaction) => {
+            if (page_index === pages.length) {
+                page_index = 1;
+            } else {
+                page_index++;
+            }
+            recipeListMessage.edit(pages[page_index - 1]);
+        });
+        forwards.on("remove", (reaction) => {
             if (page_index === pages.length) {
                 page_index = 1;
             } else {
