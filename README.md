@@ -1,12 +1,14 @@
 # Reciplease Discord Bot
 
-**Author: Iftekharul Islam**
+**Author:** Iftekharul Islam
 
 **Language:** Javascript
 
-Created using discord.js, a node.js module that allows interaction with the Discord API.
+Created using discord.js and the Edamam Recipe Search API.
 
-This Discord bot allows Discord users to search for recipes based on what they want to eat. Users can either answer questions to find recommended meals or they can search for specific foods directly.
+## Functionality
+
+This Discord bot allows Discord users to find food recipes based on their eating preferences. Users can either answer questions to find recommended meals or they can search for specific foods directly.
 
 ![image](https://user-images.githubusercontent.com/42816266/117588107-372b3300-b0d6-11eb-899f-9e7a8ad43a33.png)
 
